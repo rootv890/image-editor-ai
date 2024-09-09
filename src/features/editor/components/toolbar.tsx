@@ -16,7 +16,7 @@ import {
 	Trash,
 } from 'lucide-react';
 import { isTextType } from '../utils';
-import { BiFontFamily } from 'react-icons/bi';
+import { BiDuplicate, BiFontFamily } from 'react-icons/bi';
 import { FaBold, FaStrikethrough } from 'react-icons/fa6';
 import { FaItalic, FaUnderline } from 'react-icons/fa';
 import { ITextOptions } from 'fabric/fabric-impl';
@@ -425,6 +425,28 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 						</Button>
 					</Hint>
 				</div>
+
+				<div className="border-none flex items-center justify-center h-full">
+					<Hint
+						label="Duplicate"
+						side="bottom"
+						sideOffset={5}
+					>
+						<Button
+							onClick={() => {
+								editor?.onCopy();
+								editor?.onPaste();
+							}}
+							size="icon"
+							variant="ghost"
+						>
+							<div className="rounded-sm size-4  bg-white">
+								<BiDuplicate className="size-4" />
+							</div>
+						</Button>
+					</Hint>
+				</div>
+
 				<div className="border-none flex items-center justify-center h-full">
 					<Hint
 						label="Delete"

@@ -21,5 +21,5 @@ Canva Clone Project (based on CodeWithAntonio Tutorial)
 | **9 Sep 2024**                | Editor Image Filter      | DONE!      |
 |                               | AI Image Generation      | DONE!      |
 |                               | AI Background Removal    | DONE!      |
-|                               | Clipboard (Copy& Paste)  | UNDER DEV. |
+|                               | Clipboard (Copy& Paste)  | DONE!      |
 |                               | Drawing Tools            | UNDER DEV. |

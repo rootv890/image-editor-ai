@@ -149,6 +149,8 @@ export type BuildEditorProps = {
 	setStrokeDashArray: (value: number[]) => void;
 	fontFamily: string;
 	setFontFamily: (value: string) => void;
+	copy: () => void;
+	paste: () => void;
 };
 
 // ^ EDITOR
@@ -159,6 +161,9 @@ export interface Editor {
 	addTriangle: () => void;
 	addInverseTriangle: () => void;
 	addDiamond: () => void;
+
+	onCopy: () => void;
+	onPaste: () => void;
 
 	changeFillColor: (value: string) => void;
 	changeStrokeColor: (value: string) => void;

@@ -20,6 +20,7 @@ import {
 import useCanvasEvents from './useCanvasEvents';
 import { createFilter, isTextType } from '../utils';
 import { ITextboxOptions, ITextOptions } from 'fabric/fabric-impl';
+import { useClipboard } from './use-clipboard';
 
 // Hook
 
@@ -36,6 +37,9 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 	const [strokeWidth, setStrokeWidth] = useState<number>(STROKE_WIDTH);
 	const [strokeDashArray, setStrokeDashArray] =
 		useState<number[]>(STROKE_DASH_ARRAY);
+
+	// Use ClipBoard
+	const { copy, paste } = useClipboard({ canvas });
 
 	// AutoResize when change in width or height of the viewport?
 	useAutoResize({ canvas, container });
@@ -56,7 +60,8 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 				selectedObjects,
 				strokeDashArray,
 				setStrokeDashArray,
-
+				copy,
+				paste,
 				fontFamily,
 				setFontFamily,
 			});
@@ -71,6 +76,8 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 		selectedObjects,
 		strokeDashArray,
 		fontFamily,
+		copy,
+		paste,
 	]);
 
 	const init = useCallback(
@@ -136,6 +143,8 @@ function buildEditor({
 	setStrokeDashArray,
 	fontFamily,
 	setFontFamily,
+	copy,
+	paste,
 }: BuildEditorProps): Editor {
 	const getWorkspace = () => {
 		return canvas.getObjects().find(obj => obj.name === 'clip');
@@ -158,6 +167,10 @@ function buildEditor({
 
 	return {
 		// ! Add Methods
+		onCopy: () => copy(),
+		onPaste: () => paste(),
+
+		// Copy and Paste
 
 		// Filter
 		changeImageFilter: (value: string) => {
