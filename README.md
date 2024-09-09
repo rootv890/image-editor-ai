@@ -19,7 +19,7 @@ Canva Clone Project (based on CodeWithAntonio Tutorial)
 |                               | Editor Image Sidebar     | DONE!      |
 |                               | Editor Image Upload      | DONE!      |
 | **9 Sep 2024**                | Editor Image Filter      | DONE!      |
-|                               | AI Image Generation      | UNDER DEV. |
+|                               | AI Image Generation      | DONE!      |
 |                               | AI Background Removal    | UNDER DEV. |
 |                               | Clipboard (Copy& Paste)  | UNDER DEV. |
 |                               | Drawing Tools            | UNDER DEV. |
