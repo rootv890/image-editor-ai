@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useGenerateImage } from '@/features/ai/api/use-generate-image';
+import { Loader } from 'lucide-react';
 
 interface AiSidebarProps {
 	activeTool: ActiveTool;
@@ -70,7 +71,14 @@ export default function AiSidebar({
 						type="submit"
 						className="w-full"
 					>
-						Generate ✨
+						{mutation.isPending ? (
+							<span className="flex justify-center items-center">
+								{'Generating...'}
+								<Loader className="animate-spin" />
+							</span>
+						) : (
+							'Generate ✨'
+						)}
 					</Button>
 				</form>
 			</ScrollArea>

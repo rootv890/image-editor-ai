@@ -12,6 +12,7 @@ import {
 	ArrowUp,
 	ChevronDown,
 	DeleteIcon,
+	SquareSplitHorizontal,
 	Trash,
 } from 'lucide-react';
 import { isTextType } from '../utils';
@@ -350,6 +351,24 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 						>
 							<div className="rounded-sm size-4  bg-white">
 								<TbColorFilter className="size-4" />
+							</div>
+						</Button>
+					</Hint>
+				)}
+				{isImage && (
+					<Hint
+						label="Remove background"
+						side="bottom"
+						sideOffset={5}
+					>
+						<Button
+							onClick={() => onChangeActiveTool('remove-bg')}
+							size="icon"
+							variant="ghost"
+							className={cn(activeTool === 'remove-bg' && 'bg-gray-100')}
+						>
+							<div className="rounded-sm size-4  bg-white">
+								<SquareSplitHorizontal className="size-4" />
 							</div>
 						</Button>
 					</Hint>
