@@ -24,6 +24,32 @@ export const fonts = [
 	'Lucida Console',
 ];
 
+export const filters = [
+	'none',
+	'polaroid',
+	'sepia',
+	'kodachrome',
+	'contrast',
+	'brightness',
+	'greyscale',
+	'brownie',
+	'vintage',
+	'technicolor',
+	'pixelate',
+	'invert',
+	'blur',
+	'sharpen',
+	'emboss',
+	'removecolor',
+	'blacknwhite',
+	'vibrance',
+	'blendcolor',
+	'huerotate',
+	'resize',
+	'saturation',
+	'gamma',
+];
+
 export const selectionDependentTools = [
 	'fill',
 	'font',
@@ -144,6 +170,7 @@ export interface Editor {
 	changeFontUnderline: (value: boolean) => void;
 	changeTextAlign: (value: ITextboxOptions['textAlign']) => void;
 	changeFontSize: (value: number) => void;
+	changeImageFilter: (value: string) => void;
 
 	// fillColor: string;
 	getActiveFillColor: () => string;
@@ -157,6 +184,7 @@ export interface Editor {
 	getActiveFontUnderline: () => void;
 	getActiveTextAlign: () => ITextboxOptions['textAlign'];
 	getActiveFontSize: () => number;
+
 	delete: () => void;
 	addImage: (url: string) => void;
 

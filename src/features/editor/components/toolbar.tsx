@@ -21,6 +21,7 @@ import { FaItalic, FaUnderline } from 'react-icons/fa';
 import { ITextOptions } from 'fabric/fabric-impl';
 import { Separator } from '@/components/ui/separator';
 import FontSizeInput from './FontSizeInput';
+import { TbColorFilter } from 'react-icons/tb';
 
 interface ToolbarProps {
 	editor: Editor | undefined;
@@ -56,6 +57,7 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 
 	const selectedObjectType = editor?.selectedObjects[0]?.type;
 	const isText = isTextType(selectedObjectType);
+	const isImage = selectedObjectType === 'image';
 
 	const selectedObject = editor?.selectedObjects[0];
 	const toggleBold = () => {
@@ -63,14 +65,14 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 
 		const newValue = properties.fontWeight > 500 ? 400 : 700;
 		editor?.changeFontWeight(newValue);
-		setProperties((current) => ({ ...current, fontWeight: newValue }));
+		setProperties(current => ({ ...current, fontWeight: newValue }));
 	};
 	const toggleItalic = () => {
 		if (!selectedObject) return;
 		const isItalic = properties.fontStyle === 'italic';
 		const newValue = isItalic ? 'normal' : 'italic';
 		editor?.changeFontStyle(newValue);
-		setProperties((current) => ({ ...current, fontStyle: newValue }));
+		setProperties(current => ({ ...current, fontStyle: newValue }));
 	};
 	const toggleLinethrough = () => {
 		if (!selectedObject) return;
@@ -78,7 +80,7 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 		const newValue = properties.fontLinethrough ? false : true;
 		editor?.changeFontLineThrough(newValue);
 		// @ts-ignore
-		setProperties((current) => ({ ...current, fontLinethrough: newValue }));
+		setProperties(current => ({ ...current, fontLinethrough: newValue }));
 	};
 	const toggleUnderline = () => {
 		if (!selectedObject) return;
@@ -86,19 +88,19 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 		const newValue = properties.fontUnderline ? false : true;
 		editor?.changeFontUnderline(newValue);
 		// @ts-ignore
-		setProperties((current) => ({ ...current, fontUnderline: newValue }));
+		setProperties(current => ({ ...current, fontUnderline: newValue }));
 	};
 
 	const onChangeTextAlign = (value: ITextOptions['textAlign']) => {
 		if (!selectedObject) return;
 		editor?.changeTextAlign(value);
-		setProperties((current) => ({ ...current, textAlign: value }));
+		setProperties(current => ({ ...current, textAlign: value }));
 	};
 
 	const onChangeFontSize = (value: number) => {
 		if (!selectedObject) return;
 		editor?.changeFontSize(value);
-		setProperties((current) => ({ ...current, fontSize: value }));
+		setProperties(current => ({ ...current, fontSize: value }));
 	};
 
 	if (editor?.selectedObjects.length === 0) {
@@ -110,27 +112,37 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 	return (
 		<div className="shrink-0 h-[56px] bg-white w-full border-b items-center flex overflow-x-auto z-[49] p-2 gap-x-2">
 			<div className="flex items-center justify-center h-full">
-				<Hint label="Color" side="bottom" sideOffset={5}>
-					<Button
-						onClick={() => {
-							onChangeActiveTool('fill');
-						}}
-						size="icon"
-						variant="ghost"
-						className={cn(activeTool === 'fill' && 'bg-gray-100')}
+				{!isImage && (
+					<Hint
+						label="Color"
+						side="bottom"
+						sideOffset={5}
 					>
-						<div
-							className="rounded-sm size-4 border"
-							style={{
-								backgroundColor: properties.fillColor,
-								// typeof fillColor === 'string' ? fillColor : 'black',
+						<Button
+							onClick={() => {
+								onChangeActiveTool('fill');
 							}}
-						></div>
-					</Button>
-				</Hint>
+							size="icon"
+							variant="ghost"
+							className={cn(activeTool === 'fill' && 'bg-gray-100')}
+						>
+							<div
+								className="rounded-sm size-4 border"
+								style={{
+									backgroundColor: properties.fillColor,
+									// typeof fillColor === 'string' ? fillColor : 'black',
+								}}
+							></div>
+						</Button>
+					</Hint>
+				)}
 				{!isText && (
 					<>
-						<Hint label="Stroke Color" side="bottom" sideOffset={5}>
+						<Hint
+							label="Stroke Color"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={() => {
 									onChangeActiveTool('stroke-color');
@@ -149,7 +161,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 							</Button>
 						</Hint>
 						<div className="">
-							<Hint label="Stroke Width" side="bottom" sideOffset={5}>
+							<Hint
+								label="Stroke Width"
+								side="bottom"
+								sideOffset={5}
+							>
 								<Button
 									onClick={() => {
 										onChangeActiveTool('stroke-width');
@@ -170,7 +186,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 				{isText && (
 					<>
 						{' '}
-						<Hint label="Font" side="bottom" sideOffset={5}>
+						<Hint
+							label="Font"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={() => {
 									onChangeActiveTool('font');
@@ -189,7 +209,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 								<ChevronDown size={14} />
 							</Button>
 						</Hint>
-						<Hint label="Bold" side="bottom" sideOffset={5}>
+						<Hint
+							label="Bold"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={toggleBold}
 								size="icon"
@@ -201,7 +225,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 								</div>
 							</Button>
 						</Hint>
-						<Hint label="Italic" side="bottom" sideOffset={5}>
+						<Hint
+							label="Italic"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={toggleItalic}
 								size="icon"
@@ -215,7 +243,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 								</div>
 							</Button>
 						</Hint>
-						<Hint label="Underlien" side="bottom" sideOffset={5}>
+						<Hint
+							label="Underlien"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={toggleUnderline}
 								size="icon"
@@ -227,7 +259,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 								</div>
 							</Button>
 						</Hint>
-						<Hint label="Strike Through" side="bottom" sideOffset={5}>
+						<Hint
+							label="Strike Through"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={toggleLinethrough}
 								size="icon"
@@ -240,7 +276,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 							</Button>
 						</Hint>
 						<Separator orientation="vertical" />
-						<Hint label="Text Align Left" side="bottom" sideOffset={5}>
+						<Hint
+							label="Text Align Left"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={() => onChangeTextAlign('left')}
 								size="icon"
@@ -252,7 +292,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 								</div>
 							</Button>
 						</Hint>
-						<Hint label="Text Align Center" side="bottom" sideOffset={5}>
+						<Hint
+							label="Text Align Center"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={() => onChangeTextAlign('center')}
 								size="icon"
@@ -266,7 +310,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 								</div>
 							</Button>
 						</Hint>
-						<Hint label="Text Align Right" side="bottom" sideOffset={5}>
+						<Hint
+							label="Text Align Right"
+							side="bottom"
+							sideOffset={5}
+						>
 							<Button
 								onClick={() => onChangeTextAlign('right')}
 								size="icon"
@@ -288,8 +336,31 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 						</div>
 					</>
 				)}
+				{isImage && (
+					<Hint
+						label="Filter"
+						side="bottom"
+						sideOffset={5}
+					>
+						<Button
+							onClick={() => onChangeActiveTool('filter')}
+							size="icon"
+							variant="ghost"
+							className={cn(activeTool === 'filter' && 'bg-gray-100')}
+						>
+							<div className="rounded-sm size-4  bg-white">
+								<TbColorFilter className="size-4" />
+							</div>
+						</Button>
+					</Hint>
+				)}
+
 				<Separator orientation="vertical" />
-				<Hint label="Bring Forward" side="bottom" sideOffset={5}>
+				<Hint
+					label="Bring Forward"
+					side="bottom"
+					sideOffset={5}
+				>
 					<Button
 						onClick={() => editor?.bringForward()}
 						size="icon"
@@ -301,7 +372,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 					</Button>
 				</Hint>
 
-				<Hint label="Send Backwards" side="bottom" sideOffset={5}>
+				<Hint
+					label="Send Backwards"
+					side="bottom"
+					sideOffset={5}
+				>
 					<Button
 						onClick={() => editor?.sendBackward()}
 						size="icon"
@@ -314,7 +389,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 				</Hint>
 
 				<div className="border-none flex items-center justify-center h-full">
-					<Hint label="Opacity" side="bottom" sideOffset={5}>
+					<Hint
+						label="Opacity"
+						side="bottom"
+						sideOffset={5}
+					>
 						<Button
 							onClick={() => onChangeActiveTool('opacity')}
 							size="icon"
@@ -328,7 +407,11 @@ function Toolbar({ editor, activeTool, onChangeActiveTool }: ToolbarProps) {
 					</Hint>
 				</div>
 				<div className="border-none flex items-center justify-center h-full">
-					<Hint label="Delete" side="bottom" sideOffset={5}>
+					<Hint
+						label="Delete"
+						side="bottom"
+						sideOffset={5}
+					>
 						<Button
 							onClick={() => editor?.delete()}
 							size="icon"

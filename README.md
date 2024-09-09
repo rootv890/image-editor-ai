@@ -17,4 +17,9 @@ Canva Clone Project (based on CodeWithAntonio Tutorial)
 | **6 Sep 2024**                | Editor Font Delete Tool  | DONE!      |
 |                               | Basics of Hono           | DONE!      |
 |                               | Editor Image Sidebar     | DONE!      |
-|                               | Editor Image Upload      | DONE       |
+|                               | Editor Image Upload      | DONE!      |
+| **9 Sep 2024**                | Editor Image Filter      | DONE!      |
+|                               | AI Image Generation      | UNDER DEV. |
+|                               | AI Background Removal    | UNDER DEV. |
+|                               | Clipboard (Copy& Paste)  | UNDER DEV. |
+|                               | Drawing Tools            | UNDER DEV. |

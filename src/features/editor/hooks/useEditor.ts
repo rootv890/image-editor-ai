@@ -18,7 +18,7 @@ import {
 	FONT_SIZE,
 } from '../types';
 import useCanvasEvents from './useCanvasEvents';
-import { isTextType } from '../utils';
+import { createFilter, isTextType } from '../utils';
 import { ITextboxOptions, ITextOptions } from 'fabric/fabric-impl';
 
 // Hook
@@ -138,7 +138,7 @@ function buildEditor({
 	setFontFamily,
 }: BuildEditorProps): Editor {
 	const getWorkspace = () => {
-		return canvas.getObjects().find((obj) => obj.name === 'clip');
+		return canvas.getObjects().find(obj => obj.name === 'clip');
 	};
 	const center = (object: fabric.Object) => {
 		const workspace = getWorkspace();
@@ -159,20 +159,41 @@ function buildEditor({
 	return {
 		// ! Add Methods
 
+		// Filter
+		changeImageFilter: (value: string) => {
+			const objects = canvas.getActiveObjects();
+			objects.forEach(object => {
+				if (object.type === 'image') {
+					const imageObject = object as fabric.Image;
+					const effect = createFilter(value);
+					imageObject.filters = effect ? [effect] : [];
+					imageObject.set({});
+					imageObject.applyFilters();
+					canvas.renderAll();
+				}
+			});
+		},
+
 		// Add Image
 		addImage: (url: string) => {
-			fabric.Image.fromURL(url, (img) => {
-				const workspace = getWorkspace();
-				img.scaleToHeight(workspace?.height || 0);
-				img.scaleToWidth(workspace?.width || 0);
+			fabric.Image.fromURL(
+				url,
+				img => {
+					const workspace = getWorkspace();
+					img.scaleToHeight(workspace?.height || 0);
+					img.scaleToWidth(workspace?.width || 0);
 
-				addToCanvas(img);
-			});
+					addToCanvas(img);
+				},
+				{
+					crossOrigin: 'anonymous',
+				},
+			);
 		},
 
 		// Delete Selected Objects
 		delete: () => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				canvas.remove(object);
 			});
 
@@ -184,7 +205,7 @@ function buildEditor({
 		// Fill Color
 		changeFontFamily: (value: string) => {
 			setFontFamily(value); //form useState
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				if (isTextType(object.type)) {
 					object._set('fontFamily', value); //TODO Maybe bug
 				}
@@ -211,7 +232,7 @@ function buildEditor({
 
 		// Chaange FOnt Weight
 		changeFontWeight: (value: number) => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				if (isTextType(object.type)) {
 					// @ts-ignore
 					object.set({ fontWeight: value });
@@ -221,7 +242,7 @@ function buildEditor({
 		},
 
 		changeFontStyle: (value: string) => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				if (isTextType(object.type)) {
 					// @ts-ignore
 					object.set({ fontStyle: value });
@@ -237,7 +258,7 @@ function buildEditor({
 			return value;
 		},
 		changeFontLineThrough: (value: boolean) => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				if (isTextType(object.type)) {
 					// @ts-ignore
 					object.set({ linethrough: value });
@@ -253,7 +274,7 @@ function buildEditor({
 			return value;
 		},
 		changeFontUnderline: (value: boolean) => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				if (isTextType(object.type)) {
 					// @ts-ignore
 					object.set({ underline: value });
@@ -274,7 +295,7 @@ function buildEditor({
 		 **/
 
 		changeTextAlign: (value: ITextboxOptions['textAlign']) => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				if (isTextType(object.type)) {
 					// @ts-ignore
 					object.set({ textAlign: value });
@@ -294,7 +315,7 @@ function buildEditor({
 		 **/
 
 		changeFontSize: (value: number) => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				if (isTextType(object.type)) {
 					// @ts-ignore
 					object.set({ fontSize: value });
@@ -312,14 +333,14 @@ function buildEditor({
 
 		//  Change Opacity of Object, Stroke
 		changeOpacity: (value: number) => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				object.set({ opacity: value });
 			});
 			canvas.renderAll();
 		},
 
 		bringForward: () => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				canvas.bringForward(object);
 				canvas.renderAll();
 
@@ -329,7 +350,7 @@ function buildEditor({
 			});
 		},
 		sendBackward: () => {
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				canvas.sendBackwards(object);
 				canvas.renderAll();
 
@@ -342,7 +363,7 @@ function buildEditor({
 		// Fill Color
 		changeFillColor: (value: string) => {
 			setFillColor(value); //form useState
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				object.set({ fill: value });
 			});
 
@@ -351,7 +372,7 @@ function buildEditor({
 		// Stroke Width
 		changeStrokeWidth: (value: number) => {
 			setStrokeWidth(value); //form useState
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				object.set({ strokeWidth: value });
 			});
 			canvas.renderAll();
@@ -359,7 +380,7 @@ function buildEditor({
 		// Stroke Dash
 		changeStrokeDashArray: (value: number[]) => {
 			setStrokeDashArray(value); //form useState
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				object.set({ strokeDashArray: value });
 			});
 			canvas.renderAll();
@@ -367,7 +388,7 @@ function buildEditor({
 		// Stroke Color
 		changeStrokeColor: (value: string) => {
 			setStrokeColor(value); //form useState
-			canvas.getActiveObjects().forEach((object) => {
+			canvas.getActiveObjects().forEach(object => {
 				if (isTextType(object.type)) {
 					object.set({ fill: value });
 					return;

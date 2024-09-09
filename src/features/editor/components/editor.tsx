@@ -16,6 +16,7 @@ import OpacitySidebar from './opacity-sidebar';
 import TextSidebar from './text-sidebar';
 import FontSidebar from './font-sidebar';
 import ImageSidebar from './image-sidebar';
+import FilterSidebar from './filter-sidebar';
 
 export const Editor = () => {
 	const [activeTool, setActiveTool] = useState<ActiveTool>('select');
@@ -69,7 +70,10 @@ export const Editor = () => {
 
 	return (
 		<div className="h-full flex flex-col">
-			<Navbar activeTool={activeTool} onChangeActiveTool={onChangeActiveTool} />
+			<Navbar
+				activeTool={activeTool}
+				onChangeActiveTool={onChangeActiveTool}
+			/>
 			<div className="absolute h-[calc(100%-68px)] w-full top-[68px] flex ">
 				<Sidebar
 					activeTool={activeTool} // tells which tool is active
@@ -111,6 +115,11 @@ export const Editor = () => {
 					onChangeActiveTool={onChangeActiveTool}
 				/>
 				<ImageSidebar
+					editor={editor}
+					activeTool={activeTool}
+					onChangeActiveTool={onChangeActiveTool}
+				/>
+				<FilterSidebar
 					editor={editor}
 					activeTool={activeTool}
 					onChangeActiveTool={onChangeActiveTool}
