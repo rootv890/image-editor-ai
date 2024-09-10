@@ -165,6 +165,9 @@ export interface Editor {
 	onCopy: () => void;
 	onPaste: () => void;
 
+	enableDrawingMode: () => void;
+	disableDrawingMode: () => void;
+
 	changeFillColor: (value: string) => void;
 	changeStrokeColor: (value: string) => void;
 	changeStrokeWidth: (value: number) => void;

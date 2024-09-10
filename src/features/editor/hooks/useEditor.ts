@@ -129,7 +129,7 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 	return { init, editor };
 };
 
-// Build Editor Function
+// ^ Build Editor Function
 function buildEditor({
 	canvas,
 	fillColor,
@@ -167,10 +167,24 @@ function buildEditor({
 
 	return {
 		// ! Add Methods
-		onCopy: () => copy(),
-		onPaste: () => paste(),
+
+		// Drawing Mode
+		enableDrawingMode: () => {
+			canvas.discardActiveObject();
+			canvas.renderAll();
+			canvas.isDrawingMode = true;
+			canvas.freeDrawingBrush.width = strokeWidth;
+			canvas.freeDrawingBrush.color = strokeColor;
+		},
+		disableDrawingMode: () => {
+			console.log('Disabling');
+
+			canvas.isDrawingMode = false;
+		},
 
 		// Copy and Paste
+		onCopy: () => copy(),
+		onPaste: () => paste(),
 
 		// Filter
 		changeImageFilter: (value: string) => {
@@ -388,6 +402,7 @@ function buildEditor({
 			canvas.getActiveObjects().forEach(object => {
 				object.set({ strokeWidth: value });
 			});
+			canvas.freeDrawingBrush.width = value;
 			canvas.renderAll();
 		},
 		// Stroke Dash
@@ -408,6 +423,9 @@ function buildEditor({
 				}
 				object.set({ stroke: value });
 			});
+
+			canvas.freeDrawingBrush.color = value;
+
 			canvas.renderAll();
 		},
 

@@ -1,4 +1,4 @@
-Canva Clone Project (based on CodeWithAntonio Tutorial)
+# Canva Clone Project (based on CodeWithAntonio Tutorial)
 
 ## Project Progress
 
@@ -20,6 +20,14 @@ Canva Clone Project (based on CodeWithAntonio Tutorial)
 |                               | Editor Image Upload      | DONE!      |
 | **9 Sep 2024**                | Editor Image Filter      | DONE!      |
 |                               | AI Image Generation      | DONE!      |
-|                               | AI Background Removal    | DONE!      |
+|                               | AI Backgrou nd Removal   | DONE!      |
 |                               | Clipboard (Copy& Paste)  | DONE!      |
-|                               | Drawing Tools            | UNDER DEV. |
+| **10 Sep 2024**               | Drawing Tools            | DONE!      |
+|                               | Canvas Settings          | UNDER DEV  |
+|                               | Zoom Tool                | UNDER DEV  |
+|                               | History Undo Redo        | UNDER DEV  |
+|                               | HotKeys                  | UNDER DEV  |
+|                               | Export and Import        | UNDER DEV  |
+| **10 Sep 2024**               | Auth JS                  | UNDER DEV  |
+|                               | DB & Drizzle Setup       | UNDER DEV  |
+|                               | Custom Auth page         | UNDER DEV  |

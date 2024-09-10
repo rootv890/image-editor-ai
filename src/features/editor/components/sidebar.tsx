@@ -11,6 +11,7 @@ import {
 	Presentation,
 	Shapes,
 	Settings,
+	PencilIcon,
 } from 'lucide-react';
 import { ActiveTool } from '../types';
 
@@ -46,6 +47,12 @@ const Sidebar = ({ activeTool, onChangeActiveTool }: SidebarProps) => {
 					label={'Shapes'}
 					onClick={() => onChangeActiveTool('shapes')}
 					isActive={activeTool === 'shapes'}
+				/>
+				<SidebarItem
+					icon={PencilIcon}
+					label={'Draw'}
+					onClick={() => onChangeActiveTool('draw')}
+					isActive={activeTool === 'draw'}
 				/>
 				<SidebarItem
 					icon={Sparkles}
