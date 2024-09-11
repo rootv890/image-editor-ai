@@ -23,8 +23,8 @@
 |                               | AI Backgrou nd Removal   | DONE!      |
 |                               | Clipboard (Copy& Paste)  | DONE!      |
 | **10 Sep 2024**               | Drawing Tools            | DONE!      |
-|                               | Canvas Settings          | UNDER DEV  |
-|                               | Zoom Tool                | UNDER DEV  |
+|                               | Canvas Settings          | DONE!      |
+|                               | Zoom Tool                | DONE!      |
 |                               | History Undo Redo        | UNDER DEV  |
 |                               | HotKeys                  | UNDER DEV  |
 |                               | Export and Import        | UNDER DEV  |

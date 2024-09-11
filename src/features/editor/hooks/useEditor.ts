@@ -42,7 +42,7 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 	const { copy, paste } = useClipboard({ canvas });
 
 	// AutoResize when change in width or height of the viewport?
-	useAutoResize({ canvas, container });
+	const { autoZoom } = useAutoResize({ canvas, container });
 
 	useCanvasEvents({ canvas, setSelectedObjects, clearSelectionCallback });
 
@@ -55,11 +55,11 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 				strokeColor,
 				setStrokeColor,
 				strokeWidth,
-
 				setStrokeWidth,
 				selectedObjects,
 				strokeDashArray,
 				setStrokeDashArray,
+				autoZoom,
 				copy,
 				paste,
 				fontFamily,
@@ -76,6 +76,7 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 		selectedObjects,
 		strokeDashArray,
 		fontFamily,
+		autoZoom,
 		copy,
 		paste,
 	]);
@@ -131,6 +132,7 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 
 // ^ Build Editor Function
 function buildEditor({
+	autoZoom,
 	canvas,
 	fillColor,
 	setFillColor,
@@ -167,7 +169,41 @@ function buildEditor({
 
 	return {
 		// ! Add Methods
+		autoZoom,
+		zoomIn: () => {
+			let zoomRatio = canvas.getZoom();
+			zoomRatio += 0.05;
+			const center = canvas.getCenter();
+			canvas.zoomToPoint(new fabric.Point(center.left, center.top), zoomRatio);
+		},
+		zoomOut: () => {
+			let zoomRatio = canvas.getZoom();
+			zoomRatio -= 0.05;
+			const center = canvas.getCenter();
+			canvas.zoomToPoint(
+				new fabric.Point(center.left, center.top),
+				zoomRatio < 0.2 ? 0.2 : zoomRatio,
+			);
+		},
+		// Zoom IN
+		// Zoom Out
 
+		// Get Workspace
+		getWorkspace,
+		// Size
+		changeSize: (value: { width: number; height: number }) => {
+			const worskpace = getWorkspace();
+			worskpace?.set(value);
+			autoZoom();
+			// TODO SAVE
+		},
+		// Background
+		changeBackground: (value: string) => {
+			const workspace = getWorkspace();
+			workspace?.set({ fill: value });
+			canvas.renderAll();
+			// TODO SAVE
+		},
 		// Drawing Mode
 		enableDrawingMode: () => {
 			canvas.discardActiveObject();

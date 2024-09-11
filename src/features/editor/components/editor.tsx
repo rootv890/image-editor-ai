@@ -20,6 +20,7 @@ import FilterSidebar from './filter-sidebar';
 import AiSidebar from './ai-sidebar';
 import RemoveBgSidebar from './remove-bg-sidebar';
 import DrawSidebar from './draw-sidebar';
+import SettingsSidebar from './settings-sidebar';
 
 export const Editor = () => {
 	const [activeTool, setActiveTool] = useState<ActiveTool>('select');
@@ -143,6 +144,11 @@ export const Editor = () => {
 					activeTool={activeTool}
 					onChangeActiveTool={onChangeActiveTool}
 				/>
+				<SettingsSidebar
+					editor={editor}
+					activeTool={activeTool}
+					onChangeActiveTool={onChangeActiveTool}
+				/>
 
 				<main className="bg-muted flex-1 overflow-auto relative flex flex-col">
 					<Toolbar
@@ -157,7 +163,7 @@ export const Editor = () => {
 					>
 						<canvas ref={canvasRef} />
 					</div>
-					<Footer />
+					<Footer editor={editor} />
 				</main>
 			</div>
 		</div>

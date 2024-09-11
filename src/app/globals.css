@@ -83,3 +83,49 @@ body {
 	border-radius: 0.5rem !important;
 	overflow: hidden !important;
 }
+
+.slider {
+	-webkit-appearance: none; /* Remove default browser styles */
+	appearance: none;
+	display: flex;
+	align-items: center;
+}
+
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none; /* Remove default thumb */
+	appearance: none;
+	width: 16px;
+	height: 6px;
+	border-radius: 4px;
+	border: none;
+	background-color: rgb(86, 86, 86);
+}
+
+.slider::-ms-thumb {
+	-webkit-appearance: none; /* Remove default thumb */
+	appearance: none;
+	width: 16px;
+	height: 6px;
+	border-radius: 4px;
+	border: none;
+	background-color: rgb(207, 207, 207);
+}
+
+.slider:focus:-webkit-slider-thumb {
+	background-color: rgb(255, 255, 255);
+}
+
+.slider::-webkit-slider-runnable-track {
+	-webkit-appearance: none; /* Remove default thumb */
+	width: 100%;
+	height: fit-content;
+	appearance: none;
+	border-radius: 16px;
+	padding: 1px;
+
+	background-color: rgb(203, 203, 203);
+}
+
+s.slider::-ms-track {
+	border-color: transparent;
+}

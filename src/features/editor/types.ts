@@ -151,6 +151,7 @@ export type BuildEditorProps = {
 	setFontFamily: (value: string) => void;
 	copy: () => void;
 	paste: () => void;
+	autoZoom: () => void;
 };
 
 // ^ EDITOR
@@ -179,6 +180,8 @@ export interface Editor {
 	changeTextAlign: (value: ITextboxOptions['textAlign']) => void;
 	changeFontSize: (value: number) => void;
 	changeImageFilter: (value: string) => void;
+	changeSize: (value: { width: number; height: number }) => void;
+	changeBackground: (value: string) => void;
 
 	// fillColor: string;
 	getActiveFillColor: () => string;
@@ -193,11 +196,18 @@ export interface Editor {
 	getActiveTextAlign: () => ITextboxOptions['textAlign'];
 	getActiveFontSize: () => number;
 
+	getWorkspace: () => fabric.Object | undefined;
+
 	delete: () => void;
 	addImage: (url: string) => void;
 
 	canvas: fabric.Canvas;
 	selectedObjects: fabric.Object[];
+
+	// Zooming
+	zoomIn: () => void;
+	zoomOut: () => void;
+	autoZoom: () => void;
 
 	// Layering
 	bringForward: () => void;
