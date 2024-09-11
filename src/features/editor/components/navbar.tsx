@@ -17,28 +17,34 @@ import { CiFileOn } from 'react-icons/ci';
 import { Separator } from '@/components/ui/separator';
 import { Hint } from '@/components/hint';
 import { BsCloudCheck } from 'react-icons/bs';
-import { TbPng } from 'react-icons/tb';
-import { SiJpeg } from 'react-icons/si';
+
 import { PiFileJpg, PiFilePng, PiFileSvgLight } from 'react-icons/pi';
-import { ActiveTool } from '../types';
+import { ActiveTool, Editor } from '../types';
 import { cn } from '@/lib/utils';
 
 interface NavbarProps {
+	editor: Editor | undefined;
 	activeTool: ActiveTool;
 	onChangeActiveTool: (tool: ActiveTool) => void;
 }
 
-function Navbar({ activeTool, onChangeActiveTool }: NavbarProps) {
+function Navbar({ editor, activeTool, onChangeActiveTool }: NavbarProps) {
 	return (
 		<nav className="w-full items-center p-4 h-[68px] gap-x-8 border-b lg:pl-[34px] flex ">
 			<Logo />
 			<DropdownMenu modal={false}>
 				<DropdownMenuTrigger asChild>
-					<Button size="sm" variant={'ghost'}>
+					<Button
+						size="sm"
+						variant={'ghost'}
+					>
 						File <BiChevronDown className="size-4 ml-2" />
 					</Button>
 				</DropdownMenuTrigger>
-				<DropdownMenuContent align="start" className="min-w-60">
+				<DropdownMenuContent
+					align="start"
+					className="min-w-60"
+				>
 					<DropdownMenuItem
 						onClick={() => {}} //todo: open file
 						className="flex items-center gap-x-2"
@@ -56,8 +62,16 @@ function Navbar({ activeTool, onChangeActiveTool }: NavbarProps) {
 					<DropdownMenuItem>Export</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>
-			<Separator orientation="vertical" className="mx-2" />
-			<Hint label="Select" side="bottom" align="center" sideOffset={12}>
+			<Separator
+				orientation="vertical"
+				className="mx-2"
+			/>
+			<Hint
+				label="Select"
+				side="bottom"
+				align="center"
+				sideOffset={12}
+			>
 				<Button
 					size="sm"
 					variant="ghost"
@@ -70,26 +84,47 @@ function Navbar({ activeTool, onChangeActiveTool }: NavbarProps) {
 					/>
 				</Button>
 			</Hint>
-			<Hint label="Undo" side="bottom" align="center" sideOffset={12}>
-				<Button size="sm" variant="ghost">
+			<Hint
+				label="Undo"
+				side="bottom"
+				align="center"
+				sideOffset={12}
+			>
+				<Button
+					disabled={!editor?.canUndo()}
+					size="sm"
+					variant="ghost"
+					onClick={() => editor?.onUndo()}
+				>
 					<Undo2
 						size="24"
 						onClick={() => {}}
-						className="" //todo dynamic class
 					/>
 				</Button>
 			</Hint>
-			<Hint label="Undo" side="bottom" align="center" sideOffset={12}>
-				<Button size="sm" variant="ghost">
+			<Hint
+				label="Undo"
+				side="bottom"
+				align="center"
+				sideOffset={12}
+			>
+				<Button
+					disabled={!editor?.canRedo()}
+					onClick={() => editor?.onRedo()}
+					size="sm"
+					variant="ghost"
+				>
 					<Redo2
 						size="24"
 						onClick={() => {}}
-						className="" //todo dynamic class
 					/>
 				</Button>
 			</Hint>
 
-			<Separator orientation="vertical" className="mx-2" />
+			<Separator
+				orientation="vertical"
+				className="mx-2"
+			/>
 
 			{/* Notification  */}
 
@@ -101,11 +136,17 @@ function Navbar({ activeTool, onChangeActiveTool }: NavbarProps) {
 			<div className=" ml-auto flex items-center gap-x-4">
 				<DropdownMenu modal={false}>
 					<DropdownMenuTrigger asChild>
-						<Button size="sm" variant={'ghost'}>
+						<Button
+							size="sm"
+							variant={'ghost'}
+						>
 							Export <Download className="size-4 ml-2" />
 						</Button>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align="end" className="min-w-60">
+					<DropdownMenuContent
+						align="end"
+						className="min-w-60"
+					>
 						<DropdownMenuItem
 							onClick={() => {}} //todo: open file
 							className="flex items-center gap-x-2"

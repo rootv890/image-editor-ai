@@ -33,7 +33,7 @@ function Footer({ editor }: FooterProps) {
 				min={0.2}
 				max={2.2}
 				step={0.01}
-				onChange={e => {
+				onChange={(e) => {
 					const canvas = editor?.canvas;
 					setZoom(parseFloat(e.target.value));
 				}}
@@ -66,7 +66,7 @@ function Footer({ editor }: FooterProps) {
 					variant={'ghost'}
 					onClick={() => {
 						editor?.zoomIn();
-						setZoom(editor?.canvas.getZoom());
+						setZoom(editor?.canvas.getZoom() as number);
 					}}
 				>
 					<BiZoomIn className="size-4 " />
@@ -83,7 +83,7 @@ function Footer({ editor }: FooterProps) {
 					variant={'ghost'}
 					onClick={() => {
 						editor?.zoomOut();
-						setZoom(editor?.canvas.getZoom());
+						setZoom(editor?.canvas.getZoom() as number);
 					}}
 				>
 					<BiZoomOut className="size-4 " />

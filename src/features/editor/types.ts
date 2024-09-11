@@ -3,6 +3,17 @@ import { ITextboxOptions } from 'fabric/fabric-impl';
 
 import * as material from 'material-colors';
 
+export const JSON_KEYS = [
+	'name',
+	'gradientAngle',
+	'selectable',
+	'hasControls',
+	'linkData',
+	'editable',
+	'extensionType',
+	'extension',
+];
+
 export const fonts = [
 	'Arial',
 	'Arial Black',
@@ -152,6 +163,11 @@ export type BuildEditorProps = {
 	copy: () => void;
 	paste: () => void;
 	autoZoom: () => void;
+	save: (skip?: boolean) => void;
+	undo: () => void;
+	redo: () => void;
+	canUndo: () => boolean;
+	canRedo: () => boolean;
 };
 
 // ^ EDITOR
@@ -165,6 +181,11 @@ export interface Editor {
 
 	onCopy: () => void;
 	onPaste: () => void;
+
+	onUndo: () => void;
+	onRedo: () => void;
+	canUndo: () => boolean;
+	canRedo: () => boolean;
 
 	enableDrawingMode: () => void;
 	disableDrawingMode: () => void;
