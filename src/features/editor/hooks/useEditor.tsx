@@ -19,11 +19,17 @@ import {
 	JSON_KEYS,
 } from '../types';
 import useCanvasEvents from './useCanvasEvents';
-import { createFilter, isTextType } from '../utils';
+import {
+	createFilter,
+	downloadFile,
+	isTextType,
+	transformText,
+} from '../utils';
 import { ITextboxOptions, ITextOptions } from 'fabric/fabric-impl';
 import { useClipboard } from './use-clipboard';
 import useHistory from './useHistory';
 import useHotKeys from './useHotkeys';
+import { useWindowEvents } from './use-window-events';
 
 // Hook
 
@@ -40,6 +46,9 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 	const [strokeWidth, setStrokeWidth] = useState<number>(STROKE_WIDTH);
 	const [strokeDashArray, setStrokeDashArray] =
 		useState<number[]>(STROKE_DASH_ARRAY);
+
+	// Window Event Exit
+	useWindowEvents();
 
 	// Use History
 	const { save, canRedo, canUndo, undo, redo, canvasHistory, setHistoryIndex } =
@@ -185,6 +194,67 @@ function buildEditor({
 	undo,
 	redo,
 }: BuildEditorProps): Editor {
+	const generateSaveOptions = () => {
+		const { width, height, left, top } = getWorkspace() as fabric.Rect;
+
+		return {
+			name: 'Image',
+			format: 'png',
+			quality: 1,
+			width,
+			height,
+			left,
+			top,
+		};
+	};
+
+	const savePng = () => {
+		const options = generateSaveOptions();
+
+		canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+		const dataUrl = canvas.toDataURL(options);
+
+		downloadFile(dataUrl, 'png');
+		autoZoom();
+	};
+
+	const saveSvg = () => {
+		const options = generateSaveOptions();
+
+		canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+		const dataUrl = canvas.toDataURL(options);
+
+		downloadFile(dataUrl, 'svg');
+		autoZoom();
+	};
+
+	const saveJpg = () => {
+		const options = generateSaveOptions();
+
+		canvas.setViewportTransform([1, 0, 0, 1, 0, 0]);
+		const dataUrl = canvas.toDataURL(options);
+
+		downloadFile(dataUrl, 'jpg');
+		autoZoom();
+	};
+
+	const saveJson = async () => {
+		const dataUrl = canvas.toJSON(JSON_KEYS);
+
+		await transformText(dataUrl.objects);
+		const fileString = `data:text/json;charset=utf-8,${encodeURIComponent(
+			JSON.stringify(dataUrl, null, '\t'),
+		)}`;
+		downloadFile(fileString, 'json');
+	};
+
+	const loadJson = (json: string) => {
+		const data = JSON.parse(json);
+
+		canvas.loadFromJSON(data, () => {
+			autoZoom();
+		});
+	};
 	const getWorkspace = () => {
 		return canvas.getObjects().find((obj) => obj.name === 'clip');
 	};
@@ -206,6 +276,14 @@ function buildEditor({
 
 	return {
 		// ! Add Methods
+
+		// Saving
+		saveJpg,
+		saveJson,
+		savePng,
+		saveSvg,
+		loadJson,
+
 		canUndo,
 		canRedo,
 		autoZoom,

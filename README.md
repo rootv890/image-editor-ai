@@ -27,7 +27,7 @@
 |                               | Zoom Tool                | DONE!      |
 | **11 Sep 2024**               | History Undo Redo        | DONE!      |
 | **12 Sep 2024**               | HotKeys                  | DONE!      |
-|                               | Export and Import        | UNDER DEV  |
+|                               | Export and Import        | DONE!      |
 | **13 Sep 2024**               | Auth JS                  | UNDER DEV  |
 |                               | DB & Drizzle Setup       | UNDER DEV  |
 |                               | Custom Auth page         | UNDER DEV  |

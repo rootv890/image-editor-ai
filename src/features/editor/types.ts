@@ -179,6 +179,13 @@ export interface Editor {
 	addInverseTriangle: () => void;
 	addDiamond: () => void;
 
+	// Save and load
+	saveJpg: () => void;
+	saveJson: () => void;
+	savePng: () => void;
+	saveSvg: () => void;
+	loadJson: (json: string) => void;
+
 	onCopy: () => void;
 	onPaste: () => void;
 
