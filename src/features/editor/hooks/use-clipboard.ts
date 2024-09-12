@@ -36,7 +36,7 @@ export const useClipboard = ({ canvas }: UseClipboardProps) => {
 			}
 
 			clipboard.current.top += 10;
-			clipboard.current.left += 10;
+			clipboard.current.lxeft += 10;
 			canvas?.setActiveObject(clonedObj);
 			canvas?.requestRenderAll();
 		});

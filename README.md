@@ -25,9 +25,9 @@
 | **10 Sep 2024**               | Drawing Tools            | DONE!      |
 |                               | Canvas Settings          | DONE!      |
 |                               | Zoom Tool                | DONE!      |
-|                               | History Undo Redo        | UNDER DEV  |
-|                               | HotKeys                  | UNDER DEV  |
+| **11 Sep 2024**               | History Undo Redo        | DONE!      |
+| **12 Sep 2024**               | HotKeys                  | DONE!      |
 |                               | Export and Import        | UNDER DEV  |
-| **10 Sep 2024**               | Auth JS                  | UNDER DEV  |
+| **13 Sep 2024**               | Auth JS                  | UNDER DEV  |
 |                               | DB & Drizzle Setup       | UNDER DEV  |
 |                               | Custom Auth page         | UNDER DEV  |

@@ -23,6 +23,7 @@ import { createFilter, isTextType } from '../utils';
 import { ITextboxOptions, ITextOptions } from 'fabric/fabric-impl';
 import { useClipboard } from './use-clipboard';
 import useHistory from './useHistory';
+import useHotKeys from './useHotkeys';
 
 // Hook
 
@@ -51,6 +52,16 @@ export const useEditor = ({ clearSelectionCallback }: EditorHookProps) => {
 	const { autoZoom } = useAutoResize({ canvas, container });
 
 	useCanvasEvents({ save, canvas, setSelectedObjects, clearSelectionCallback });
+
+	// HotKeys
+	useHotKeys({
+		canvas,
+		undo,
+		redo,
+		save,
+		copy,
+		paste,
+	});
 
 	const editor = useMemo(() => {
 		if (canvas) {
