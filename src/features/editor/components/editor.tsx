@@ -70,16 +70,15 @@ export const Editor = () => {
 		});
 
 		// cleanup / unmount / dispose
-		return () => canvas.dispose();
+		// Cleanup function to dispose of the canvas on component unmount
+		return () => {
+			canvas.dispose();
+		};
 	}, [init]);
 
 	return (
 		<div className="h-full flex flex-col">
-			<Navbar
-				editor={editor}
-				activeTool={activeTool}
-				onChangeActiveTool={onChangeActiveTool}
-			/>
+			<Navbar editor={editor} activeTool={activeTool} onChangeActiveTool={onChangeActiveTool} />
 			<div className="absolute h-[calc(100%-68px)] w-full top-[68px] flex ">
 				<Sidebar
 					activeTool={activeTool} // tells which tool is active
@@ -158,10 +157,7 @@ export const Editor = () => {
 						onChangeActiveTool={onChangeActiveTool}
 						key={JSON.stringify(editor?.canvas.getActiveObject)}
 					/>
-					<div
-						className="flex-1 h-[calc(100%-124px)] bg-muted"
-						ref={containerRef}
-					>
+					<div className="flex-1 h-[calc(100%-124px)] bg-muted" ref={containerRef}>
 						<canvas ref={canvasRef} />
 					</div>
 					<Footer editor={editor} />
