@@ -1,7 +1,10 @@
+import { protectServer } from '@/features/auth/utils';
+
 import { Editor } from '@/features/editor/components/editor';
 import React from 'react';
 
-function EditorProjectIdPage() {
+async function EditorProjectIdPage() {
+	await protectServer();
 	return <Editor />; //editor with respect to the project id
 }
 
