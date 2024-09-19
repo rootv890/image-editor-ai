@@ -33,7 +33,7 @@
 |                               | Custom Auth page          | DONE!      |
 |                               | Discord Login             | DONE!      |
 |                               | Google Login              | DONE!      |
-| **18 Sep 2024**               | Custom Creditionals Login | UNDER DEV  |
+| **18 Sep 2024**               | Custom Creditionals Login | DONE!      |
 |                               | AuthJS & Hono             | UNDER DEV  |
 |                               | Sessiona Provider & Btn   | UNDER DEV  |
 |                               | HomePage & Layout         | UNDER DEV  |
