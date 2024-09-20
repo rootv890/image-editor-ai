@@ -35,5 +35,5 @@
 |                               | Google Login              | DONE!      |
 | **19 Sep 2024**               | Custom Creditionals Login | DONE!      |
 |                               | AuthJS & Hono             | DONE!      |
-|                               | Sessiona Provider & Btn   | UNDER DEV  |
+|                               | Sessiona Provider & Btn   | DONE!      |
 |                               | HomePage & Layout         | UNDER DEV  |

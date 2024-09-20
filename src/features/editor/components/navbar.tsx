@@ -21,6 +21,7 @@ import { BsCloudCheck } from 'react-icons/bs';
 import { PiFileJpg, PiFilePng, PiFileSvgLight } from 'react-icons/pi';
 import { ActiveTool, Editor } from '../types';
 import { cn } from '@/lib/utils';
+import UserButton from './user-button';
 
 interface NavbarProps {
 	editor: Editor | undefined;
@@ -211,7 +212,7 @@ function Navbar({ editor, activeTool, onChangeActiveTool }: NavbarProps) {
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
-				{/* // TODO Add User Component */}
+                <UserButton/>
 			</div>
 		</nav>
 	);
