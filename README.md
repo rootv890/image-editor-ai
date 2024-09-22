@@ -38,7 +38,7 @@
 |  **20 Sep 2024**              | Sessiona Provider & Btn   | DONE!      |
 |                               | HomePage & Layout         | DONE!      |
 |  **22 Sep 2024**              | Project Schema & API      | DONE!      |
-|                               | Fetch Existing Project    | UNDER DEV  |
+|                               | Fetch Existing Project    | DONE!      |
 |                               | AutoSave                  | UNDER DEV  |
 |                               | Project Ininite Load      | UNDER DEV  |
 |                               | Project Duplication       | UNDER DEV  |

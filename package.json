@@ -32,6 +32,7 @@
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
 		"dotenv": "^16.4.5",
+		"drizzle": "^1.4.0",
 		"drizzle-orm": "^0.33.0",
 		"drizzle-zod": "^0.5.1",
 		"fabric": "5.3.0-browser",
@@ -54,7 +55,8 @@
 		"unsplash-js": "^7.0.19",
 		"uploadthing": "^6.13.2",
 		"use-file-picker": "^2.1.2",
-		"uuidv4": "^6.2.13"
+		"uuidv4": "^6.2.13",
+		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@types/bcryptjs": "^2.4.6",
