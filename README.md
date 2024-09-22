@@ -37,3 +37,10 @@
 |                               | AuthJS & Hono             | DONE!      |
 |  **20 Sep 2024**              | Sessiona Provider & Btn   | DONE!      |
 |                               | HomePage & Layout         | DONE!      |
+|  **22 Sep 2024**              | Project Schema & API      | DONE!      |
+|                               | Fetch Existing Project    | UNDER DEV  |
+|                               | AutoSave                  | UNDER DEV  |
+|                               | Project Ininite Load      | UNDER DEV  |
+|                               | Project Duplication       | UNDER DEV  |
+|                               | Delete Project            | UNDER DEV  |
+|                               | Template Feature          | UNDER DEV  |
