@@ -40,7 +40,7 @@
 |  **22 Sep 2024**              | Project Schema & API      | DONE!      |
 |                               | Fetch Existing Project    | DONE!      |
 |                               | AutoSave                  | DONE!      |
-|  **28 Sep 2024**              | Project Ininite Load      | UNDER DEV  |
-|                               | Project Duplication       | UNDER DEV  |
-|                               | Delete Project            | UNDER DEV  |
+|  **28 Sep 2024**              | Project Ininite Load      | DONE!      |
+|                               | Project Duplication       | DONE!      |
+|                               | Delete Project            | DONE!      |
 |                               | Template Feature          | UNDER DEV  |

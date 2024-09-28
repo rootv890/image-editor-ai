@@ -112,6 +112,11 @@ const app = new Hono()
                 } )
                 .returning();
 
+            // if ( !duplicateData[ 0 ] )
+            // {
+            //     return c.json( { error: 'Something went wrong' }, 400 );
+            // }
+
             return c.json( { data: duplicateData[ 0 ] } );
         },
     )

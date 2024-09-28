@@ -5,43 +5,40 @@ import { client } from '@/lib/hono';
 import { toast } from 'sonner';
 
 type ResponseType = InferResponseType<
-    ( typeof client.api.projects )[ ':id' ][ '$patch' ], 200
+    ( typeof client.api.projects )[ ':id' ][ 'duplicate' ][ '$post' ], 200
 >;
 
 type RequestType = InferRequestType<
-    ( typeof client.api.projects )[ ':id' ][ '$patch' ]
->[ 'json' ];
+    ( typeof client.api.projects )[ ':id' ][ 'duplicate' ][ '$post' ]
+>[ 'param' ];
 
-export const useUpdateProject = ( id: string ) =>
+export const useDuplicateProject = () =>
 {
     const queryClient = useQueryClient();
     const mutation = useMutation<ResponseType, Error, RequestType>( {
-        mutationKey: [ 'project', { id } ],
-        mutationFn: async ( json ) =>
+
+        mutationFn: async ( param ) =>
         {
-            const response = await client.api.projects[ ':id' ].$patch( { json, param: { id } } );
+            const response = await client.api.projects[ ':id' ].duplicate.$post( { param } );
             if ( !response.ok )
             {
-                throw new Error( "Failed to update project" );
+                throw new Error( "Failed to duplicate project" );
             }
             return await response.json();
         },
         onSuccess: () =>
         {
-            // TODO : Invalidate Projects Query
-            // --here
+
 
             queryClient.invalidateQueries( {
                 queryKey: [ 'projects' ]
             } );
-            queryClient.invalidateQueries( {
-                queryKey: [ 'project', { id } ]
-            } );
+
         },
-         
+
         onError: () =>
         {
-            toast.error( "Failed to update project" );
+            toast.error( "Failed to duplicate project" );
         }
     } );
 
