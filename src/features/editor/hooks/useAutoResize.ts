@@ -1,83 +1,93 @@
 import React, { useCallback, useEffect } from 'react';
 import { fabric } from 'fabric';
-interface useAutoResizeProps {
-	canvas: fabric.Canvas | null;
-	container: HTMLDivElement | null;
+interface useAutoResizeProps
+{
+    canvas: fabric.Canvas | null;
+    container: HTMLDivElement | null;
 }
 
-export const useAutoResize = ({ canvas, container }: useAutoResizeProps) => {
-	// AutoZoom
-	const autoZoom = useCallback(() => {
-		if (!canvas || !container) return;
+export const useAutoResize = ( { canvas, container }: useAutoResizeProps ) =>
+{
+    // AutoZoom
+    const autoZoom = useCallback( () =>
+    {
+        if ( !canvas || !container ) return;
 
-		const width = container.offsetWidth;
-		const height = container.offsetHeight;
+        const width = container.offsetWidth;
+        const height = container.offsetHeight;
 
-		canvas.setWidth(width);
-		canvas.setHeight(height);
+        canvas.setWidth( width );
+        canvas.setHeight( height );
 
-		const center = canvas.getCenter();
-		const zoomRatio = 0.85; // 85% zoom
+        const center = canvas.getCenter();
+        const zoomRatio = 0.85; // 85% zoom
 
-		const localWorkspace = canvas.getObjects().find(obj => obj.name === 'clip');
+        const localWorkspace = canvas.getObjects().find( obj => obj.name === 'clip' );
 
-		// @ts-ignore
-		const scale = fabric.util.findScaleToFit(localWorkspace, {
-			width: width,
-			height: height,
-		});
-		const zoom = zoomRatio * scale; // 85% zoom
+        // @ts-ignore
+        const scale = fabric.util.findScaleToFit( localWorkspace, {
+            width: width,
+            height: height,
+        } );
+        const zoom = zoomRatio * scale; // 85% zoom
 
-		canvas.setViewportTransform(fabric.iMatrix.concat());
+        canvas.setViewportTransform( fabric.iMatrix.concat() );
 
-		canvas.zoomToPoint(new fabric.Point(center.left, center.top), zoom);
+        canvas.zoomToPoint( new fabric.Point( center.left, center.top ), zoom );
 
-		if (!localWorkspace) return;
+        if ( !localWorkspace ) return;
 
-		const workspaceCenter = localWorkspace.getCenterPoint();
-		const viewportTransform = canvas.viewportTransform;
+        const workspaceCenter = localWorkspace.getCenterPoint();
+        const viewportTransform = canvas.viewportTransform;
 
-		if (
-			canvas.width === undefined ||
-			canvas.height === undefined ||
-			!viewportTransform
-		) {
-			return;
-		}
+        if (
+            canvas.width === undefined ||
+            canvas.height === undefined ||
+            !viewportTransform
+        )
+        {
+            return;
+        }
 
-		viewportTransform[4] =
-			canvas.width / 2 - workspaceCenter.x * viewportTransform[0];
+        viewportTransform[ 4 ] =
+            canvas.width / 2 - workspaceCenter.x * viewportTransform[ 0 ];
 
-		viewportTransform[5] =
-			canvas.height / 2 - workspaceCenter.y * viewportTransform[3];
+        viewportTransform[ 5 ] =
+            canvas.height / 2 - workspaceCenter.y * viewportTransform[ 3 ];
 
-		canvas.setViewportTransform(viewportTransform);
-		localWorkspace.clone((cloned: fabric.Rect) => {
-			canvas.clipPath = cloned;
-			canvas.requestRenderAll();
-		});
-	}, [container, canvas]);
+        canvas.setViewportTransform( viewportTransform );
+        localWorkspace.clone( ( cloned: fabric.Rect ) =>
+        {
+            canvas.clipPath = cloned;
+            canvas.requestRenderAll();
+        } );
+    }, [ container, canvas ] );
 
-	useEffect(() => {
-		let resizeObserver: ResizeObserver | null = null;
+    useEffect( () =>
+    {
+        let resizeObserver: ResizeObserver | null = null;
 
-		if (canvas && container) {
-			resizeObserver = new ResizeObserver(() => {
-				// AutoZoom
-				autoZoom();
-			});
-			resizeObserver.observe(container);
-		}
+        if ( canvas && container )
+        {
+            resizeObserver = new ResizeObserver( () =>
+            {
+                // AutoZoom
+                autoZoom();
+            } );
+            resizeObserver.observe( container );
+        }
 
-		// Clean up the observer
-		return () => {
-			if (resizeObserver) {
-				resizeObserver.disconnect();
-			}
-		};
-	}, [canvas, container, autoZoom]);
+        // Clean up the observer
+        return () =>
+        {
+            if ( resizeObserver )
+            {
+                resizeObserver.disconnect();
+            }
+        };
+    }, [ canvas, container, autoZoom ] );
 
-	return { autoZoom };
+    return { autoZoom };
 };
 
 /** Notes

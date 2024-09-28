@@ -15,7 +15,7 @@ const app = new Hono()
             "query",
             z.object( {
                 page: z.coerce.number(),
-                limit: z.coerce.number(), 
+                limit: z.coerce.number(),
             } ),
         ),
         async ( c ) =>

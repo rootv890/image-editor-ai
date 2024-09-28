@@ -39,8 +39,8 @@
 |                               | HomePage & Layout         | DONE!      |
 |  **22 Sep 2024**              | Project Schema & API      | DONE!      |
 |                               | Fetch Existing Project    | DONE!      |
-|                               | AutoSave                  | UNDER DEV  |
-|                               | Project Ininite Load      | UNDER DEV  |
+|                               | AutoSave                  | DONE!      |
+|  **28 Sep 2024**              | Project Ininite Load      | UNDER DEV  |
 |                               | Project Duplication       | UNDER DEV  |
 |                               | Delete Project            | UNDER DEV  |
 |                               | Template Feature          | UNDER DEV  |
