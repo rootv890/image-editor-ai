@@ -1,21 +1,26 @@
 'use client';
-import { useGetTemplates } from "@/features/projects/api/use-get-templates";
+import { useGetTemplates, ResponseType } from "@/features/projects/api/use-get-templates";
 import { SectionHeader } from "./ProjectsSection";
 import { Loader2Icon, TriangleAlertIcon } from "lucide-react";
 import TemplateCard from "./TemplateCard";
 import { useCreateProject } from "@/features/projects/api/use-create-project";
 import { useRouter } from "next/navigation";
+import { usePaywall } from "@/features/subscriptions/hooks/use-paywall";
 
 const TemplatesSection = () =>
 {
-
+    const { shouldBlock, trigglePaywall } = usePaywall();
     const mutation = useCreateProject();
     const router = useRouter();
     const { data, isLoading, isError } = useGetTemplates( { page: '1', limit: '4' } );
 
-    const onClick = ( template ) =>
+    const onClick = ( template: ResponseType[ 'data' ][ 0 ] ) =>
     {
-        // TODO : Check if template is PRO
+        if ( template.isPro && shouldBlock )
+        {
+            trigglePaywall();
+            return;
+        }
 
         mutation.mutate( {
             name: `${template.name} project`,
@@ -33,9 +38,6 @@ const TemplatesSection = () =>
             }
 
         );
-
-
-
     };
 
     if ( isLoading )
@@ -55,7 +57,7 @@ const TemplatesSection = () =>
         </div>
     );
 
-    if ( !data.length )
+    if ( !data?.length )
     {
         return null;
     }
@@ -69,7 +71,7 @@ const TemplatesSection = () =>
                 {data?.map( ( template ) => (
                     <TemplateCard
                         key={template.id}
-                        name={template.name}
+                        title={template.name}
                         imageSrc={template.thumbnail || ''}
                         disabled={false}
                         onClick={() => onClick( template )}

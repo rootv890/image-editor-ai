@@ -46,5 +46,5 @@
 | **30 Sep 2024**               | Template Feature          | DONE!      |
 |                               | Template Sidebar          | DONE!      |
 |                               | Subscription UI           | DONE!      |
-|                               | Subscription API          | DONE!      |
-|                               | Deployment                | DONE!      |
+|                               | Subscription API          | UNDER DEV  |
+|                               | Deployment                | UNDER DEV  |
