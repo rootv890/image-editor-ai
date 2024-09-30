@@ -43,4 +43,8 @@
 |  **28 Sep 2024**              | Project Ininite Load      | DONE!      |
 |                               | Project Duplication       | DONE!      |
 |                               | Delete Project            | DONE!      |
-|                               | Template Feature          | UNDER DEV  |
+| **30 Sep 2024**               | Template Feature          | DONE!      |
+|                               | Template Sidebar          | DONE!      |
+|                               | Subscription UI           | DONE!      |
+|                               | Subscription API          | DONE!      |
+|                               | Deployment                | DONE!      |

@@ -1,6 +1,6 @@
 'use client';
 import { Button } from "@/components/ui/button";
-import { useCreateProjects } from "@/features/projects/api/use-create-project";
+import { useCreateProject } from "@/features/projects/api/use-create-project";
 import { ArrowRight, Sparkle, Sparkles } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +11,7 @@ type Props = {};
 export default function Banner ( { }: Props )
 {
     const router = useRouter();
-    const mutation = useCreateProjects();
+    const mutation = useCreateProject();
 
     const onClick = () =>
     {

@@ -13,7 +13,7 @@ type RequestType = InferRequestType<
     ( typeof client.api.projects )[ '$post' ]
 >[ 'json' ];
 
-export const useCreateProjects = () =>
+export const useCreateProject = () =>
 {
     const queryClient = useQueryClient();
     const mutation = useMutation<ResponseType, Error, RequestType>( {

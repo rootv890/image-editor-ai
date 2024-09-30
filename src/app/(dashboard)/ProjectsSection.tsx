@@ -67,7 +67,7 @@ const ProjectsSection = () =>
             </div>
         );
     }
-    if ( !data.pages.length )
+    if ( !data.pages.length || !data.pages[ 0 ].data.length )
     {
         return (
             <div>
@@ -83,7 +83,7 @@ const ProjectsSection = () =>
     }
     return (
         <div>
-            <SectionHeader />
+            <SectionHeader title="Recent Projects" />
             <ConfirmationDialog />
             <Table>
                 <TableBody>
@@ -166,9 +166,11 @@ const ProjectsSection = () =>
 export default ProjectsSection;
 
 
-const SectionHeader = () => (
+export const SectionHeader = ( { title }: { title: string; } ) => (
     <>
-        <h3 className="font-semibold text-lg"> Recent Projects</h3>
+        <h3 className="font-semibold text-lg"> {title}</h3>
         <Separator className="mt-4" />
+
+
     </>
 );

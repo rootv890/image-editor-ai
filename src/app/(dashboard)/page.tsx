@@ -5,14 +5,16 @@ import { protectServer } from '@/features/auth/utils';
 import { auth } from '@/auth';
 import Banner from './Banner';
 import ProjectsSection from './ProjectsSection';
+import TemplatesSection from './TemplatesSection';
 export default async function Home ()
 {
-  await protectServer();
-  const session = await auth();
-  return (
-    <main className="flex flex-col space-y-6 max-w-screen-xl mx-auto pb-10">
-      <Banner />
-      <ProjectsSection />
-    </main>
-  );
+    await protectServer();
+    const session = await auth();
+    return (
+        <main className="flex flex-col space-y-6 max-w-screen-xl mx-auto pb-10">
+            <Banner />
+            <TemplatesSection />
+            <ProjectsSection />
+        </main>
+    );
 }
