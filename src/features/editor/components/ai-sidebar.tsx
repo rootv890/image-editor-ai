@@ -23,7 +23,7 @@ export default function AiSidebar ( {
     editor,
 }: AiSidebarProps )
 {
-    const { shouldBlock, trigglePaywall } = usePaywall();
+    const { shouldBlock, triggerPaywall } = usePaywall();
     const mutation = useGenerateImage();
     const [ value, setValue ] = useState( '' );
 
@@ -33,7 +33,7 @@ export default function AiSidebar ( {
 
         if ( shouldBlock )
         {
-            trigglePaywall();
+            triggerPaywall();
             return;
         }
 

@@ -4,12 +4,12 @@ import { InferRequestType, InferResponseType } from 'hono';
 import { client } from '@/lib/hono';
 import { toast } from 'sonner';
 
-type ResponseType = InferResponseType<
-    ( typeof client.api.projects )[ ':id' ][ '$delete ' ], 200
+// @ts-ignore
+type ResponseType = InferResponseType<( typeof client.api.projects )[ ':id' ][ '$delete' ], 200
 >;
-
+// @ts-ignore
 type RequestType = InferRequestType<
-    ( typeof client.api.projects )[ ':id' ][ '$delete ' ]
+    ( typeof client.api.projects )[ ':id' ][ '$delete' ]
 >[ 'param' ];
 
 export const useDeleteProject = () =>

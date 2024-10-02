@@ -23,7 +23,7 @@ export default function RemoveBgSidebar ( {
     editor,
 }: RemoveBgSidebarProps )
 {
-    const { shouldBlock, trigglePaywall } = usePaywall();
+    const { shouldBlock, triggerPaywall } = usePaywall();
     const selectedObject = editor?.selectedObjects[ 0 ];
     // @ts-ignore
     const imageSrc = selectedObject?._originalElement?.currentSrc;
@@ -39,7 +39,7 @@ export default function RemoveBgSidebar ( {
     {
         if ( shouldBlock )
         {
-            trigglePaywall();
+            triggerPaywall();
             return;
         }
 

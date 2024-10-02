@@ -24,7 +24,7 @@ export default function TemplateSidebar ( {
 }: TemplateSidebarProps )
 {
     const value = editor?.getActiveFontFamily();
-    const { shouldBlock, trigglePaywall } = usePaywall();
+    const { shouldBlock, triggerPaywall } = usePaywall();
     const [ ConfirmDialog, confirm ] = useConfirm(
         "Are you Sure?",
         "You're about to overwrite current design with this template!"
@@ -41,7 +41,7 @@ export default function TemplateSidebar ( {
 
         if ( template.isPro && shouldBlock )
         {
-            trigglePaywall();
+            triggerPaywall();
             return;
         }
 
