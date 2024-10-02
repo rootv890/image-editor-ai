@@ -3,17 +3,17 @@ import React from 'react';
 import SidebarItem from './sidebar-items';
 
 import
-    {
-        LayoutTemplate,
-        Type,
-        Sparkles,
-        Pencil,
-        ImageIcon,
-        Presentation,
-        Shapes,
-        Settings,
-        PencilIcon,
-    } from 'lucide-react';
+{
+    LayoutTemplate,
+    Type,
+    Sparkles,
+    Pencil,
+    ImageIcon,
+    Presentation,
+    Shapes,
+    Settings,
+    PencilIcon,
+} from 'lucide-react';
 import { ActiveTool } from '../types';
 
 interface SidebarProps

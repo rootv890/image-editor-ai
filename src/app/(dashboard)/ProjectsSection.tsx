@@ -43,7 +43,7 @@ const ProjectsSection = () =>
     {
         return (
             <div>
-                <SectionHeader />
+                <SectionHeader title="Projects" />
                 <div className="flex flex-col justify-center items-center gap-y-4 h-32">
                     <AlertTriangleIcon className="size-6 text-muted-foreground" />
                     <p className="text-muted-foreground text-sm">
@@ -57,7 +57,7 @@ const ProjectsSection = () =>
     {
         return (
             <div>
-                <SectionHeader />
+                <SectionHeader title="Projects" />
                 <div className="flex flex-col justify-center items-center gap-y-4 h-32">
                     <Loader2Icon className="size-6 text-muted-foreground animate-spin" />
                     <p className="text-muted-foreground text-sm">
@@ -71,7 +71,7 @@ const ProjectsSection = () =>
     {
         return (
             <div>
-                <SectionHeader />
+                <SectionHeader title="" />
                 <div className="flex flex-col justify-center items-center gap-y-4 h-32">
                     <Search className="size-6 text-muted-foreground" />
                     <p className="text-muted-foreground text-sm">
