@@ -9,7 +9,7 @@ import { usePaywall } from "@/features/subscriptions/hooks/use-paywall";
 
 const TemplatesSection = () =>
 {
-    const { shouldBlock, trigglePaywall } = usePaywall();
+    const { shouldBlock, triggerPaywall } = usePaywall();
     const mutation = useCreateProject();
     const router = useRouter();
     const { data, isLoading, isError } = useGetTemplates( { page: '1', limit: '4' } );
@@ -18,7 +18,7 @@ const TemplatesSection = () =>
     {
         if ( template.isPro && shouldBlock )
         {
-            trigglePaywall();
+            triggerPaywall();
             return;
         }
 
